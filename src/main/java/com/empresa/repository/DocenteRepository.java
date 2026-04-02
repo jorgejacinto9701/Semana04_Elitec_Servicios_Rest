@@ -14,4 +14,8 @@ public interface DocenteRepository extends JpaRepository<Docente, Integer> {
 	@Query("SELECT d FROM Docente d WHERE d.nombre LIKE %:nombre%") 
 	public List<Docente> listaPoNombre(String nombre);
 
+	
+	public List<Docente> findByNombreContaining(String nombre);
+	
+	public List<Docente> findByDni(String dni);
 }

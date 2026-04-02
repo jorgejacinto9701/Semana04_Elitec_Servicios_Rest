@@ -8,4 +8,6 @@ public interface DocenteService {
 
 	public List<Docente> listaDocentePorNombre(String nombre);
 	
+	public List<Docente> listaDocentePorDni(String dni);
+	
 }

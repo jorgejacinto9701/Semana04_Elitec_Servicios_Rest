@@ -18,5 +18,10 @@ public class DocenteServiceImpl implements DocenteService {
 	public List<Docente> listaDocentePorNombre(String nombre) {
 		return docenteRepository.listaPoNombre(nombre);
 	}
+
+	@Override
+	public List<Docente> listaDocentePorDni(String dni) {
+		return docenteRepository.findByDni(dni);
+	}
 	
 }

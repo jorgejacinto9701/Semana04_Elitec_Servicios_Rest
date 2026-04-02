@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.empresa.entity.Docente;
@@ -22,4 +23,10 @@ public class DocenteController {
 	public List<Docente> listaDocentePorNombre(@PathVariable String filtro) {
 		return docenteService.listaDocentePorNombre(filtro);
 	}
+	
+	@GetMapping("/listaDocentePorDni")
+	public List<Docente> listaDocentePorDni(@RequestParam String dni) {
+		return docenteService.listaDocentePorDni(dni);
+	}
+	
 }
