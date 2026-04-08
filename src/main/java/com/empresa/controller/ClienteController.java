@@ -14,7 +14,7 @@ import com.empresa.entity.Cliente;
 import com.empresa.service.ClienteService;
 
 @RestController
-@RequestMapping("/rest/Cliente")
+@RequestMapping("/rest/cliente")
 public class ClienteController {
 
 	@Autowired
