@@ -1,9 +1,11 @@
 package com.empresa.controller;
 
+import java.time.LocalDateTime;
 import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,23 +17,24 @@ import com.empresa.service.ClienteService;
 
 @RestController
 @RequestMapping("/rest/cliente")
+@CrossOrigin("http://localhost:4200")
 public class ClienteController {
 
 	@Autowired
-	private ClienteService ClienteService;
+	private ClienteService clienteService;
 	
 	
 	@PostMapping
 	@ResponseBody
 	public ResponseEntity<?> insertaCliente(@RequestBody Cliente objCliente){
-		HashMap<String, String> mensaje = new HashMap<>();
-		Cliente objSalida = ClienteService.insertaCliente(objCliente);
-		if (objSalida == null) {
-			mensaje.put("mensaje", "Error en el registro");
-		}else {
-			mensaje.put("mensaje", "Se ha registrado el Cliente de ID " + objSalida.getIdCliente());
-		}
-		return ResponseEntity.ok(mensaje);
+		HashMap<String, Object> salida = new HashMap<>();
+		objCliente.setIdCliente(0);
+		objCliente.setFechaRegistro(LocalDateTime.now());
+		objCliente.setEstado(1);
+		Cliente objSalida = clienteService.insertaCliente(objCliente);
+		salida.put("mensaje", "Proveedor registrado");
+		salida.put("data", objSalida);
+		return ResponseEntity.ok(salida);
 	}
 	
 	
